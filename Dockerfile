@@ -1,19 +1,17 @@
-# Use a Python base image
+# Base image
 FROM python:3.9-slim
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Install necessary dependencies including git
-RUN apt-get update && apt-get install -y \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+# Copy scripts and required files
+COPY .github/scripts/frequency.py ./scripts/
+COPY .github/scripts/update_readme.sh ./scripts/
+COPY .github/scripts/entrypoint.sh ./scripts/
+COPY data.txt .
 
-# Copy the contents of the project to the /app directory
-COPY . /app/
+# Make scripts executable
+RUN chmod +x ./scripts/*.sh
 
-# Ensure the entrypoint script exists and is executable
-RUN chmod +x /app/.github/scripts/entrypoint.sh
-
-# Set the entrypoint to the entrypoint script
-ENTRYPOINT ["/app/.github/scripts/entrypoint.sh"]
+# Set the entrypoint script
+ENTRYPOINT ["./scripts/entrypoint.sh"]
