@@ -17,6 +17,9 @@ jobs:
       run: |
         docker build -t vowel-frequency-analyzer:latest .
 
-    - name: Run Docker container
+    - name: Run Docker container with environment variables
       run: |
-        docker run --rm vowel-frequency-analyzer:latest
+        docker run --rm \
+          -e GITHUB_USER="${{ github.actor }}" \
+          -e TIMESTAMP="$(date)" \
+          vowel-frequency-analyzer:latest
