@@ -4,8 +4,8 @@ FROM python:3.9-slim
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy necessary scripts and files into the container (update paths accordingly)
-COPY . /app/
+# Copy the .github/scripts/ folder into the container
+COPY .github/scripts/ /app/.github/scripts/
 
 # Make the entrypoint script executable
 RUN chmod +x /app/.github/scripts/entrypoint.sh
