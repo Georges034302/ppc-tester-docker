@@ -1,11 +1,18 @@
 #!/bin/bash
 
-# Inputs from environment variables
-GITHUB_USER=${GITHUB_USER:-"Unknown"}
+# Inputs
+FREQ_RESULT=$1
+GITHUB_USER=$2
 TIMESTAMP=$(date)
 
-# Run frequency.py and capture the result
-FREQ_RESULT=$(python3 ./scripts/frequency.py data.txt)
+# READEME Log Format
+echo -e "\n[$GITHUB_USER - $FREQ_RESULT - $TIMESTAMP]" >> README.md
 
-# Call update_readme.sh with the required arguments
-bash ./scripts/update_readme.sh "$FREQ_RESULT" "$GITHUB_USER"
+# Configure Git to use GitHub Actions user and email
+git config --global user.name "github-actions"
+git config --global user.email "github-actions@users.noreply.github.com"
+
+# Add README.md to git, commit, and push the changes
+git add README.md
+git commit -m "Update README with vowel frequency results"
+git push
