@@ -5,7 +5,7 @@ FREQ_RESULT=$1
 GITHUB_USER=$2
 TIMESTAMP=$(date)
 
-# Update README
+# Ensure the correct format
 echo -e "\n[$GITHUB_USER - $FREQ_RESULT - $TIMESTAMP]" >> README.md
 
 # Configure Git to use GitHub Actions user and email
