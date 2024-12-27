@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# Ensure the text file path is provided
-if [ -z "$1" ]; then
-  echo "Error: No file path provided."
-  exit 1
-fi
+echo "======================"
+echo "Starting Frequency Analyzer..."
 
-FILE_PATH=$1
+# Run frequency.py with the input data
+python3 /app/.github/scripts/frequency.py "$1"
 
-# Run the Python frequency analyzer script
-python3 /app/frequency.py "$FILE_PATH"
+# Update README (assuming this will be executed after frequency.py)
+bash /app/.github/scripts/update_readme.sh
 
-# Run the update README script
-bash /app/update_readme.sh
+echo "Process Completed!"
+echo "======================"
