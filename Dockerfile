@@ -9,8 +9,11 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy your application code to the container
+# Copy the entire repository to /app
 COPY . /app/
 
-# Set the entrypoint (if needed for other parts of the workflow)
+# Ensure the entrypoint script is executable
+RUN chmod +x /app/scripts/entrypoint.sh
+
+# Set the entrypoint to the entrypoint script
 ENTRYPOINT ["/app/scripts/entrypoint.sh"]
