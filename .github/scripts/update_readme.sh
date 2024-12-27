@@ -11,7 +11,6 @@ apt-get update && apt-get install -y git
 # Initialize a git repository if not already initialized
 if [ ! -d ".git" ]; then
   git init
-  git remote add origin https://github.com/Georges034302/custom_workflows.git  # Replace with your repository URL
 fi
 
 # Configure Git to use GitHub Actions user and email
