@@ -1,5 +1,8 @@
 name: Analyze Vowel Frequency
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   analyze:
@@ -9,7 +12,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Build and Run Docker Container
-        uses: docker://docker://<your_docker_image>
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
         with:
-          args: data.txt
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Vowel Frequency Analyzer
+        run: |
+          docker run --rm ghcr.io/your_github_username/vowel-frequency-analyzer:latest data.txt
+
+      - name: Update README with Frequency
+        run: |
+          GITHUB_USER="${{ github.actor }}"
+          FREQ_RESULT="$(docker run --rm ghcr.io/your_github_username/vowel-frequency-analyzer:latest data.txt)"
+          bash .github/scripts/update_readme.sh "$FREQ_RESULT" "$GITHUB_USER"

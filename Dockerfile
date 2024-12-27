@@ -1,16 +1,11 @@
 FROM python:3.9-slim
 
-# Set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy necessary files
-COPY . .
+COPY .github/scripts /app/scripts
+COPY .github/scripts/frequency.py /app/frequency.py
+COPY .github/scripts/update_readme.sh /app/update_readme.sh
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Make entrypoint script executable
-RUN chmod +x ./github/scripts/entrypoint.sh
-
-# Set entrypoint
-ENTRYPOINT ["./github/scripts/entrypoint.sh"]
+ENTRYPOINT ["bash", "/app/scripts/entrypoint.sh"]
