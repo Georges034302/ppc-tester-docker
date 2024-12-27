@@ -1,14 +1,14 @@
-# Use official Python image as a base
+# Use a Python base image
 FROM python:3.9-slim
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy scripts and other necessary files into the container
-COPY .github/scripts/ /app/
+# Copy only necessary files into the container
+COPY .github/scripts /app/scripts
 
-# Set the entrypoint script to execute when the container starts
-ENTRYPOINT ["bash", "/app/entrypoint.sh"]
+# Make entrypoint.sh executable
+RUN chmod +x /app/scripts/entrypoint.sh
 
-# Ensure entrypoint.sh is executable
-RUN chmod +x /app/entrypoint.sh
+# Set the default entrypoint for the container
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]

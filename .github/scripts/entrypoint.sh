@@ -3,11 +3,10 @@
 echo "======================"
 echo "Starting Frequency Analyzer..."
 
-# Run frequency.py with the input data
-python3 /app/.github/scripts/frequency.py "$1"
+# Running the Python frequency analyzer
+python3 /app/scripts/frequency.py /app/data.txt
 
-# Update README (assuming this will be executed after frequency.py)
-bash /app/.github/scripts/update_readme.sh
+# Running update_readme.sh
+bash /app/scripts/update_readme.sh
 
 echo "Process Completed!"
-echo "======================"
