@@ -1,8 +1,5 @@
 name: Analyze Vowel Frequency
-on: 
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   analyze:
@@ -22,9 +19,3 @@ jobs:
       - name: Run Vowel Frequency Analyzer
         run: |
           docker run --rm ghcr.io/your_github_username/vowel-frequency-analyzer:latest data.txt
-
-      - name: Update README with Frequency
-        run: |
-          GITHUB_USER="${{ github.actor }}"
-          FREQ_RESULT="$(docker run --rm ghcr.io/your_github_username/vowel-frequency-analyzer:latest data.txt)"
-          bash .github/scripts/update_readme.sh "$FREQ_RESULT" "$GITHUB_USER"

@@ -9,5 +9,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'ghcr.io/your_github_username/vowel-frequency-analyzer:latest'
-  args:
-    - ${{ inputs.file }}
