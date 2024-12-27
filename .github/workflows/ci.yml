@@ -1,4 +1,4 @@
-name: Analyze Vowel Frequency
+name: Analyze Vowels Frequency
 on: [push]
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Vowel Frequency Analyzer
+      - name: Pull and run Vowel Frequency Analyzer Docker image
         run: |
           docker pull ghcr.io/georges034302/vowel-frequency-analyzer:latest
           docker run --rm ghcr.io/georges034302/vowel-frequency-analyzer:latest data.txt
