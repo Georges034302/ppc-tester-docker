@@ -20,7 +20,10 @@ git config --global user.email "github-actions@users.noreply.github.com"
 # Update README
 echo -e "\n[$GITHUB_USER - $FREQ_RESULT - $TIMESTAMP]" >> README.md
 
+# Get the current branch
+CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
+
 # Add README.md to git, commit, and push the changes
 git add README.md
 git commit -m "Update README with vowel frequency results"
-git push origin main
+git push origin "$CURRENT_BRANCH"
