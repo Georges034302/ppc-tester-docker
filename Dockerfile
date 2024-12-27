@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy all necessary files into the container
 COPY . .
 
-# Make the entrypoint script executable
-RUN chmod +x /github/scripts/entrypoint.sh
+# Make the entrypoint script executable (corrected path)
+RUN chmod +x /app/.github/scripts/entrypoint.sh
 
 # Set the entrypoint to execute the entrypoint.sh script
-ENTRYPOINT ["/github/scripts/entrypoint.sh"]
+ENTRYPOINT ["/app/.github/scripts/entrypoint.sh"]
