@@ -18,7 +18,7 @@ git config --global user.name "github-actions"
 git config --global user.email "github-actions@users.noreply.github.com"
 
 # Set up remote origin (using your repository URL)
-git remote add origin https://github.com/Georges034302/custom_workflows.git  # Update this with your repo URL
+git remote add origin https://github.com/Georges034302/ppc-tester-docker.git  # Update this with your repo URL
 
 # Fetch the latest changes to ensure we have the latest branches
 git fetch origin
@@ -30,6 +30,13 @@ git checkout main || git checkout master
 echo -e "\n[$GITHUB_USER - $FREQ_RESULT - $TIMESTAMP]" >> README.md
 
 # Add README.md to git, commit, and push the changes
+
+# Use the GitHub token for authentication when pushing
 git add README.md
 git commit -m "Update README with vowel frequency results"
-git push origin $(git rev-parse --abbrev-ref HEAD)  # Push to the current branch
+
+# Set the GitHub token for authentication
+GITHUB_TOKEN=${GITHUB_TOKEN}
+
+# Push changes to the remote repository
+git push https://$GITHUB_USER:$GITHUB_TOKEN@github.com/Georges034302/ppc-tester-docker.git HEAD:main
