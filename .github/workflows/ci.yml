@@ -19,4 +19,4 @@ jobs:
       - name: Pull and run Vowel Frequency Analyzer Docker image
         run: |
           docker pull ghcr.io/georges034302/vowel-frequency-analyzer:latest
-          docker run --rm ghcr.io/georges034302/vowel-frequency-analyzer:latest data.txt
+          docker run --rm ghcr.io/georges034302/vowel-frequency-analyzer:latest ${{ github.workspace }}/data.txt
