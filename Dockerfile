@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the entire repository to /app
+# Copy the entire repository to /app inside the container
 COPY . /app/
 
 # Ensure the entrypoint script is executable
