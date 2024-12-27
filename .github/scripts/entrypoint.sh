@@ -1,10 +1,15 @@
 #!/bin/bash
 
-# Run the frequency analysis
-FREQ_RESULT=$(python3 /app/frequency.py "$1")
+# Ensure the text file path is provided
+if [ -z "$1" ]; then
+  echo "Error: No file path provided."
+  exit 1
+fi
 
-# Output the result
-echo $FREQ_RESULT
+FILE_PATH=$1
 
-# Update README
-bash /app/update_readme.sh "$FREQ_RESULT" "$GITHUB_ACTOR"
+# Run the Python frequency analyzer script
+python3 /app/frequency.py "$FILE_PATH"
+
+# Run the update README script
+bash /app/update_readme.sh
