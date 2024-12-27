@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the entire repository into the container
+# Copy the entire project into the container
 COPY . /app/
 
 # Ensure the entrypoint script is executable
-RUN chmod +x /app/github/scripts/entrypoint.sh  # Correct the path to match the project structure
+RUN chmod +x /app/github/scripts/entrypoint.sh
 
 # Set the entrypoint to the entrypoint script
 ENTRYPOINT ["/app/github/scripts/entrypoint.sh"]
