@@ -1,11 +1,14 @@
+# Start from a Python base image
 FROM python:3.9-slim
 
+# Set working directory
 WORKDIR /app
 
-COPY .github/scripts /app/scripts
-COPY .github/scripts/frequency.py /app/frequency.py
-COPY .github/scripts/update_readme.sh /app/update_readme.sh
+# Copy necessary files
+COPY . /app
 
-RUN pip install --no-cache-dir -r /app/requirements.txt
+# Install dependencies (if needed)
+RUN pip install -r requirements.txt
 
-ENTRYPOINT ["bash", "/app/scripts/entrypoint.sh"]
+# Set entrypoint to execute the shell script
+ENTRYPOINT ["bash", "/github/scripts/entrypoint.sh"]
