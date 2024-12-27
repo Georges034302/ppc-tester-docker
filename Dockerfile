@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 COPY . /app/
 
 # Ensure the entrypoint script exists and is executable
-RUN [ -f /app/scripts/entrypoint.sh ] && chmod +x /app/scripts/entrypoint.sh || echo "entrypoint.sh not found"
+RUN chmod +x /app/scripts/entrypoint.sh
 
 # Set the entrypoint to the entrypoint script
 ENTRYPOINT ["/app/scripts/entrypoint.sh"]
