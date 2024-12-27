@@ -11,6 +11,9 @@ WORKDIR /app
 COPY .github/scripts /app/scripts
 COPY data.txt /app/data.txt
 
+# Initialize a git repository (if needed for git operations in the script)
+RUN git init
+
 # Make entrypoint.sh executable
 RUN chmod +x /app/scripts/entrypoint.sh
 
