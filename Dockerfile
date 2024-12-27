@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
 # Copy everything into the container (ensure scripts are included)
 COPY . /app/
 
-# Ensure the entrypoint script is executable (automatically handled)
-RUN chmod +x /app/scripts/entrypoint.sh
+# Ensure the entrypoint script exists and is executable
+RUN [ -f /app/scripts/entrypoint.sh ] && chmod +x /app/scripts/entrypoint.sh || echo "entrypoint.sh not found"
 
 # Set the entrypoint to the entrypoint script
 ENTRYPOINT ["/app/scripts/entrypoint.sh"]
