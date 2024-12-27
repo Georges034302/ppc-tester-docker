@@ -9,6 +9,6 @@ inputs:
 runs:
   using: 'docker'
   image: 'ghcr.io/georges034302/vowel-frequency-analyzer:latest'
-  entrypoint: ['bash', '/github/scripts/entrypoint.sh']
+  entrypoint: ['/bin/bash', '/github/scripts/entrypoint.sh']
   env:
     FILE: ${{ inputs.file }}
